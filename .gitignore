@@ -1,0 +1,13 @@
+# Ignore all
+*
+
+# add specific dir and sub-dir
+!/Algorithm/
+!/Algorithm/**/
+!/lcof/
+!/lcof/**/
+
+# add files with specific extensions
+!*.cpp
+!*.md
+!.gitignore
