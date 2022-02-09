@@ -29,6 +29,25 @@ public:
     }
 };
 
+class Solution2{
+public:
+    void rotate(vector<vector<int> >& matrix) {
+        int n = matrix.size();
+        // 水平
+        for (int i = 0; i < n / 2; i++) {
+            for (int j = 0; j < n; j++) {
+                swap(matrix[n - 1 - i][j], matrix[i][j]);
+            }
+        }
+        //对角线
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                swap(matrix[j][i], matrix[i][j]);
+            }
+        }
+    }
+};
+
 int main(){
     int input[][4] = {1,2,3,4,
                     5,6,7,8,
