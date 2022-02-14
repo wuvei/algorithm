@@ -33,7 +33,7 @@ public:
     ListNode* reverseList(ListNode* head) {
         if (!head) return nullptr;
         ListNode* newNode = nullptr;
-        while(!head){
+        while(head){
             ListNode* next = head -> next;
             head -> next = newNode;
             newNode = head;
