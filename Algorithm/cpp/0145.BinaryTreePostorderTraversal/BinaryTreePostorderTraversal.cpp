@@ -35,3 +35,26 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if (!root) return res;
+        stack<TreeNode*> s;
+        while (root || !s.empty()) {
+            while (root) {
+                s.push(root);
+                if (root -> left) root = root -> left;
+                else root = root -> right;
+            }
+            root = s.top();
+            s.pop();
+            res.push_back(root -> val);
+            if (!s.empty() && s.top() -> left == root)
+                root = s.top() -> right;
+            else root = nullptr;
+        }
+        return res;
+    }
+};
