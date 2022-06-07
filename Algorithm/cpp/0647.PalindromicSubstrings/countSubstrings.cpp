@@ -21,6 +21,48 @@ public:
     }
 };
 
+func countSubstrings(s string) int {
+    count := 0
+    dp := make([]bool, len(s))
+
+    for j := 0; j < len(s); j++ {
+        for i := 0; i <= j; i++ {
+            if i == j {
+                dp[i] = true
+                count++
+            } else if j-i == 1 && s[i] == s[j] {
+                dp[i] = true
+                count++
+            } else if j-i > 1 && s[i] == s[j] && dp[i+1] {
+                dp[i] = true
+                count++
+            } else {
+                dp[i] = false
+            }
+        }
+    }
+    return count
+}
+
+// DP
+class Solution {
+public:
+    int countSubstrings(string s) {
+        vector<vector<bool>> dp(s.size(), vector<bool>(s.size(), false));
+        int result = 0;
+        for (int i = s.size() - 1; i >= 0; i--) {
+            for (int j = i; j < s.size(); j++) {
+                if (s[i] == s[j] && (j - i <= 1 || dp[i + 1][j - 1])) {
+                    result++;
+                    dp[i][j] = true;
+                }
+            }
+        }
+        return result;
+    }
+};
+
+
 // Manacher 算法
 class Solution {
 public:
