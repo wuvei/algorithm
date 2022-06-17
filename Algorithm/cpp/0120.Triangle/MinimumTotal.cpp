@@ -1,19 +1,14 @@
 class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
-        if (triangle.size() == 1) return triangle[0][0];
-        int n = triangle.size(), pre1, pre2;
-        vector<int> dp(n, 0);
+        int n = triangle.size();
+        vector dp(n, 10010);
         dp[0] = triangle[0][0];
-        for(int i = 1; i < n; i++) {
-            pre1 = dp[0];
-            dp[0] = dp[0] + triangle[i][0];
-            for(int j = 1; j < i; j++) {
-                pre2 = dp[j];
-                dp[j] = std::min(dp[j], pre1) + triangle[i][j];
-                pre1 = pre2;
+        for (int i = 1; i < n; ++i) {
+            for (int j = i; j > 0; --j) {
+                dp[j] = std::min(dp[j - 1], dp[j]) + triangle[i][j];
             }
-            dp[i] = pre1 + triangle[i][i];
+            dp[0] += triangle[i][0];
         }
         return *std::min_element(dp.begin(), dp.end());
     }
