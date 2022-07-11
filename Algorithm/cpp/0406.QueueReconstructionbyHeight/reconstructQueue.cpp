@@ -43,3 +43,28 @@ public:
         return vector<vector<int>>(tmp.begin(), tmp.end());
     }
 };
+
+// sort
+class Solution {
+public:
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+        sort(people.begin(), people.end(), [](const vector<int> &a, const vector<int> &b) {
+            return a[0] == b[0]? a[1] >= b[1]: a[0] < b[0];
+        });
+        int n = people.size();
+        vector<vector<int> > ans(n);
+        for (auto &v: people) {
+            int h = v[1];
+            for (int i = 0; i < n; ++i) {
+                if (!ans[i].size()) {
+                    if (h) --h;
+                    else {
+                        ans[i] = v;
+                        break;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};

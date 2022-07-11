@@ -13,3 +13,23 @@ public:
         return std::max(inc, dec);
     }
 };
+
+// greedy
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        if (nums.size() < 2) return 1;
+        int ans = 1, flag = 0;
+        for (int i = 1; i < nums.size(); ++i) {
+            if (nums[i] < nums[i - 1] && flag != -1) {
+                ++ans;
+                flag = -1;
+            }
+            else if (nums[i] > nums[i - 1] && flag != 1) {
+                ++ans;
+                flag = 1;
+            }
+        }
+        return ans;
+    }
+};
