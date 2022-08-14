@@ -31,3 +31,16 @@ public:
         return true;
     }
 };
+
+class Solution {
+public:
+    long long pre = static_cast<long long>(INT_MIN) - 10LL;
+    bool isValidBST(TreeNode* root) {
+        if (!root) return true;
+        if (!isValidBST(root->left))
+            return false;
+        if (root->val <= pre) return false;
+        pre = root->val;
+        return isValidBST(root->right);
+    }
+};
