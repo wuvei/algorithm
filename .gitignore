@@ -6,6 +6,10 @@
 !/Algorithm/**/
 !/lcof/
 !/lcof/**/
+!/lcci
+!/lcci/**/
+!/newcoder
+!/newcoder/**/
 
 # add files with specific extensions
 !*.cpp
